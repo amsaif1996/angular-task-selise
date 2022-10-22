@@ -1,0 +1,22 @@
+.marginForAddBtn{
+  margin-left: 200px;
+}
+.marginForModal{
+  margin-bottom: 20px;
+}
+.dropDownWidth{
+  width: 200px;
+}
+.modalClass {
+  border: 5px solid #875f5f;
+  background-color: lightgray;
+  box-shadow: 3px 3px 10px rgba(0 0 0 / 0.5);
+}
+.disable{
+  pointer-events: none;
+}
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 40%;
+}

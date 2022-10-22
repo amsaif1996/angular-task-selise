@@ -1,0 +1,73 @@
+<div class="d-flex">
+    <h4>
+      Bookmark Manager
+    </h4>
+  <button (click)="openModal(true)" class="float-end marginForAddBtn">
+    Add Bookmarks
+  </button>
+</div>
+
+<form [formGroup]="modalForm">
+<div *ngIf="modalOpenFlag" class="modalClass">
+  <h6>Add Bookmarks</h6>
+
+  <div class="marginForModal">
+    <input class="dropDownWidth" type="text" placeholder="Title" maxlength="30" formControlName="Title" required>
+  </div>
+
+  <div class="marginForModal">
+    <input class="dropDownWidth" type="url" placeholder="Url" formControlName="Url" required>
+  </div>
+
+  <div>
+    <select  *ngFor="let category of categoryList" class="dropDownWidth" formControlName="Category" id="Category" placeholder="Category" [ngClass]="{'disable':categoryAddFlag == true}">
+      <option value={{category.category}}>{{category.category}}</option>
+    </select>
+    <span>
+      <button  (click)="addCategory(true)">
+        +
+      </button>
+    </span>
+  </div>
+
+  <div *ngIf="categoryAddFlag">
+    <input class="dropDownWidth" type="text" placeholder="New Category Name" formControlName="newCategory">
+  </div>
+
+  <div class="cancelSaveBtn">
+    <button (click)="openModal(false)" style="margin: 20px">
+      Cancel
+    </button>
+      <button (click)="saveBtn()" style="margin-left: 40px">
+        Save
+      </button>
+  </div>
+
+</div>
+
+<div *ngIf="!modalOpenFlag">
+  <div *ngFor="let category of categoryList">
+    <h6>
+      {{category.category}}
+    </h6>
+
+    <div class="card">
+        <p>{{category.title}}
+        <span> <button (click)="showCategoryDetails(category)">
+          Details
+        </button></span>
+        </p>
+    </div>
+
+  </div>
+</div>
+
+
+  <div *ngIf="categoryDetails != null && !modalOpenFlag" class="card float-end d-flex">
+    <p><b>Title: </b>{{categoryDetails.title}}</p>
+    <p><b>Url: </b><a href="https://{{categoryDetails.url}}" target="_blank">{{categoryDetails.url}}</a></p>
+    <p><b>Category: </b>{{categoryDetails.category}}</p>
+  </div>
+
+
+</form>
